@@ -17,7 +17,7 @@
         }
     },
     "require": {
-        "php-http/guzzle6-adapter": "^2.0",
+        "php-http/guzzle6-adapter": "^1.0",
         "omnipay/common": "^3.0",
         "paycats/paycats-php-sdk": "^1.0"
     },
