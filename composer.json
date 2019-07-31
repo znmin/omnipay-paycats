@@ -1,0 +1,24 @@
+{
+    "name": "znmin/omnipay-paycats",
+    "type": "library",
+    "keywords": [
+        "gateway",
+        "omnipay",
+        "pay",
+        "payment",
+        "paycats"
+    ],
+    "description": "Paycats gateway for Omnipay payment processing library",
+    "homepage": "https://github.com/znmin/omnipay-paycats",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Omnipay\\Paycats\\": "src/"
+        }
+    },
+    "require": {
+        "php-http/guzzle6-adapter": "^2.0",
+        "omnipay/common": "^3.0",
+        "paycats/paycats-php-sdk": "^1.0"
+    }
+}
