@@ -3,7 +3,7 @@
 namespace Omnipay\Paycats\Message;
 
 use Omnipay\Common\Message\ResponseInterface;
-use Paycats\Sdk\Signature;
+use Omnipay\Paycats\Signature;
 
 class MiniProgramRequest extends BaseAbstractRequest
 {
