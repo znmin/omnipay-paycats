@@ -5,7 +5,7 @@ namespace Omnipay\Paycats\Message;
 use Omnipay\Common\Message\ResponseInterface;
 use Paycats\Sdk\Signature;
 
-class MiniProgramRequest extends BaseAbstractRequest
+class CompletePurchaseRequest extends BaseAbstractRequest
 {
     /**
      * Get the raw data array for this message. The format of this varies from gateway to
@@ -16,8 +16,6 @@ class MiniProgramRequest extends BaseAbstractRequest
      */
     public function getData()
     {
-        $this->validate('mch_id', 'total_fee', 'out_trade_no', 'body', 'key');
-
         $data = [
             'mch_id' => $this->getParameter('mch_id'),
             'total_fee' => $this->getParameter('total_fee'),
@@ -25,9 +23,11 @@ class MiniProgramRequest extends BaseAbstractRequest
             'body' => $this->getParameter('body'),
             'attach' => $this->getParameter('attach'),
             'user_id' => $this->getParameter('user_id'),
+            'notify_type' => $this->getParameter('notify_type'),
+            'transaction_id' => $this->getParameter('transaction_id'),
+            'pay_at' => $this->getParameter('pay_at'),
+            'openid' => $this->getParameter('openid'),
         ];
-
-        $data = array_filter($data);
 
         $data['sign'] = Signature::make($data, $this->getParameter('key'));
 
@@ -42,6 +42,26 @@ class MiniProgramRequest extends BaseAbstractRequest
      */
     public function sendData($data)
     {
-        return $this->response = new MiniProgramResponse($this, $data);
+        return $this->response = new CompletePurchaseResponse($this, $data);
+    }
+
+    public function setNotifyType($notify_type)
+    {
+        $this->setParameter('notify_type', $notify_type);
+    }
+
+    public function setTransactionId($transaction_id)
+    {
+        $this->setParameter('transaction_id', $transaction_id);
+    }
+
+    public function setPayAt($pay_at)
+    {
+        $this->setParameter('pay_at', $pay_at);
+    }
+
+    public function setOpenid($openid)
+    {
+        $this->setParameter('openid', $openid);
     }
 }

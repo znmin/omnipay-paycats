@@ -2,7 +2,9 @@
 
 namespace Omnipay\Paycats;
 
+use Omnipay\Paycats\Message\CompletePurchaseRequest;
 use Omnipay\Paycats\Message\MiniProgramRequest;
+use Paycats\Sdk\Signature;
 
 class MiniProgramGateway extends BaseAbstractGateway
 {
@@ -20,5 +22,12 @@ class MiniProgramGateway extends BaseAbstractGateway
     public function purchase($parameters = [])
     {
         return $this->createRequest(MiniProgramRequest::class, $parameters);
+    }
+
+    public function completePurchase($parameters = [])
+    {
+        Signature::verify($parameters, $this->getParameter('key'));
+
+        return $this->createRequest(CompletePurchaseRequest::class, $parameters);
     }
 }
