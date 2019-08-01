@@ -29,8 +29,6 @@ class CompletePurchaseRequest extends BaseAbstractRequest
             'openid' => $this->getParameter('openid'),
         ];
 
-        $data['sign'] = Signature::make($data, $this->getParameter('key'));
-
         return $data;
     }
 
